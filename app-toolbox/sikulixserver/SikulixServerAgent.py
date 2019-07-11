@@ -102,8 +102,8 @@ def initialize (controllerIp, controllerPort, toolName, toolDesc, defaultTool,
                           supportProxy, proxyIp, proxyPort, sslSupport )
     
 
-BIN_WIN = '%s\Plugins\sikulixserver\bin\sikuli-script.bat' % (Settings.getDirExec() )
-BIN_LINUX = "/opt/sikulix/runsikulix"
+BIN_WIN = r'%s\Plugins\sikulixserver\bin\sikuli-script.bat' % (Settings.getDirExec() )
+BIN_LINUX = r"/opt/sikulix/runsikulix"
 
 class SikulixServer(GenericTool.Tool):
     """
@@ -135,15 +135,15 @@ class SikulixServer(GenericTool.Tool):
         self.__type__ = __TYPE__
         self.__mutex__ = threading.RLock()
         
-        if sys.platform == "win32" :
-            self.binJava = Settings.get( 'BinWin', 'java' )
-        elif sys.platform == "linux2":
-            if not os.path.exists( Settings.get( 'BinLinux', 'java' ) ):
-                raise Exception('java is not installed')
-            if not os.path.exists( Settings.get( 'BinLinux', 'sikulix' ) ):
-                raise Exception('sikulix is not installed')
-        else:
-            raise Exception( 'System %s not supported'   % sys.platform  )    
+        # if sys.platform == "win32" :
+            # self.binJava = Settings.get( 'BinWin', 'java' )
+        # elif sys.platform == "linux2":
+            # if not os.path.exists( Settings.get( 'BinLinux', 'java' ) ):
+                # raise Exception('java is not installed')
+            # if not os.path.exists( Settings.get( 'BinLinux', 'sikulix' ) ):
+                # raise Exception('sikulix is not installed')
+        # else:
+            # raise Exception( 'System %s not supported'   % sys.platform  )    
             
         self.sikulixIp = sikulixIp
         self.sikulixPort = sikulixPort

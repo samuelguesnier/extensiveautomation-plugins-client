@@ -27,7 +27,7 @@ Selenium2 agent
 
 import Core.GenericTool as GenericTool
 import Libs.Settings as Settings
-import Libs.FifoQueue as FifoQueue
+# import Libs.FifoQueue as FifoQueue
 
 import sys
 import shlex
@@ -99,7 +99,7 @@ Events messages:
 
 Targetted operating system: Windows and Linux"""
 
-BIN_WIN = r'"%s\Plugins\selenium2server\" -jar ' % ( Settings.getDirExec() )
+BIN_WIN = r'"%s\Plugins\selenium2server\bin\selenium-script.bat" -jar ' % ( Settings.getDirExec() )
 BIN_LINUX = r"java \"%s/Plugins/selenium2server/selenium-server-standalone.jar\"" % ( Settings.getDirExec() )
 
 

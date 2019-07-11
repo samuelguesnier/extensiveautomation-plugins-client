@@ -307,14 +307,15 @@ class Curl(GenericTool.Tool):
                         __options += ' --data-binary "@%s"'  % infile
                     
                     __options += ' -o "%s"' % outfile
-                    self.trace("curl command: %s" % __options )
+                    self.trace("curl options: %s" % __options )
         except Exception as e:
             self.onToolLogErrorCalled("Unable to init curl command - %s" % e)
      
         # windows support
         if sys.platform == "win32" :
-            __curlexe = '"%s\Plugins\curl\bin\"' % (Settings.getDirExec() )
+            __curlexe = r'"%s\Plugins\curl\bin\curl.exe"' % (Settings.getDirExec() )
             __curlexe += __options
+            self.trace("curl command: %s" % __curlexe )
             try:
                 command_process = subprocess.Popen(__curlexe, shell=True, 
                                                     stdin=subprocess.PIPE, 
@@ -328,6 +329,7 @@ class Curl(GenericTool.Tool):
         if sys.platform == "linux2":
             __curlexe = 'curl '
             __curlexe += __options
+            self.trace("curl command: %s" % __curlexe )
             try:
                 command_process = subprocess.Popen(__curlexe, shell=True, 
                                                     stdin=subprocess.PIPE, 

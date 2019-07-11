@@ -47,9 +47,9 @@ if sys.version_info > (3,):
 
 __TOOL_TYPE__ = GenericTool.TOOL_AGENT
 __WITH_IDE__ = True  
-__APP_PATH__ = '%s\%s\%s' % (Settings.getDirExec(), 
-                             Settings.get('Paths', 'bin'), 
-                             Settings.get('BinWin', 'soapui-ide') )
+# __APP_PATH__ = '%s\%s\%s' % (Settings.getDirExec(), 
+                             # Settings.get('Paths', 'bin'), 
+                             # Settings.get('BinWin', 'soapui-ide') )
 __TYPE__="""soapui"""
 __RESUME__="""This agent enables to execute SoapUI test file.
 Can be used on Linux or Windows."""
@@ -77,6 +77,8 @@ def initialize (controllerIp, controllerPort, toolName, toolDesc, defaultTool,
     return SoapUI( controllerIp, controllerPort, toolName, toolDesc, defaultTool, 
                     supportProxy, proxyIp, proxyPort, sslSupport )
     
+BIN_WIN = ""
+BIN_LINUX = ""
 
 class SoapUI(GenericTool.Tool):
     """
@@ -109,22 +111,22 @@ class SoapUI(GenericTool.Tool):
         
         self.thread_actions = []
 
-        self.detectSoapUI()
+        # self.detectSoapUI()
 
-    def detectSoapUI(self):
-        """
-        Detect soapui
-        """
-        testrunnerBin = None
+    # def detectSoapUI(self):
+        # """
+        # Detect soapui
+        # """
+        # testrunnerBin = None
         
-        if sys.platform == "win32":
-            testrunnerBin = Settings.get('BinWin', 'soapui-testrunner')
-        if sys.platform == "linux2":
-            testrunnerBin = Settings.get('BinLinux', 'soapui-testrunner')
+        # if sys.platform == "win32":
+            # testrunnerBin = Settings.get('BinWin', 'soapui-testrunner')
+        # if sys.platform == "linux2":
+            # testrunnerBin = Settings.get('BinLinux', 'soapui-testrunner')
             
-        if testrunnerBin is not None:
-            if not os.path.isfile( testrunnerBin ):
-                raise Exception('soap ui is not installed')
+        # if testrunnerBin is not None:
+            # if not os.path.isfile( testrunnerBin ):
+                # raise Exception('soap ui is not installed')
             
     def getType(self):
         """
@@ -285,7 +287,7 @@ class SoapUI(GenericTool.Tool):
             self.onToolLogWarningCalled( "<< Run test [%s->%s]" % (testsuiteName,testcaseName) )
 
             if sys.platform == "win32":
-                testrunnerBin = Settings.get('BinWin', 'soapui-testrunner')
+                testrunnerBin = BIN_WIN
                 testRunnerCmd = '"%s" %s -s "%s" -c "%s" "%s\%s"' % (   testrunnerBin, 
                                                                         " ".join(soapuiOptions), 
                                                                         testsuiteName, 
@@ -293,7 +295,7 @@ class SoapUI(GenericTool.Tool):
                                                                         projectPath, 
                                                                         projectFile)
             elif sys.platform == "linux2":
-                testrunnerBin = '%s' % Settings.get('BinLinux', 'soapui-testrunner')
+                testrunnerBin = BIN_LINUX
                 testRunnerCmd = '"%s" %s -s "%s" -c "%s" "%s/%s"' % (   testrunnerBin, 
                                                                         " ".join(soapuiOptions), 
                                                                         testsuiteName, 

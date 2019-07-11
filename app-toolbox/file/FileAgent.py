@@ -27,9 +27,13 @@ File agent
 
 import Core.GenericTool as GenericTool
 import Libs.Settings as Settings
-import Libs.FifoQueue as FifoQueue
-import LogWatcher
+# import Libs.FifoQueue as FifoQueue
 
+
+try:
+    import LogWatcher
+except ImportError:
+    from . import LogWatcher
 import sys
 import threading
 import os

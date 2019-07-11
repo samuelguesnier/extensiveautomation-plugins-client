@@ -27,7 +27,7 @@ Command agent
 
 import Core.GenericTool as GenericTool
 import Libs.Settings as Settings
-import Libs.FifoQueue as FifoQueue
+# import Libs.FifoQueue as FifoQueue
 
 import sys
 import shlex

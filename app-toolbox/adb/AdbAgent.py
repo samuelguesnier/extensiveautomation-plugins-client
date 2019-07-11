@@ -27,7 +27,7 @@ ADB agent
 
 import Core.GenericTool as GenericTool
 import Libs.Settings as Settings
-import Libs.FifoQueue as FifoQueue
+# import Libs.FifoQueue as FifoQueue
 
 import sys
 import shlex
@@ -68,7 +68,7 @@ if sys.version_info > (3,):
 
 __TOOL_TYPE__ = GenericTool.TOOL_AGENT
 __WITH_IDE__ = False  
-__APP_PATH__ = '%s\Plugins\adb\bin\' % Settings.getDirExec()
+__APP_PATH__ = r'"%s/Plugins/adb/bin/"' % Settings.getDirExec()
 __TYPE__="""adb"""
 __RESUME__="""This agent enables to control mobile phone throught android debug bridge.
 Can be used on Windows only."""
@@ -88,9 +88,6 @@ Events messages:
         
 Targetted operating system: Windows"""
 
-import sys
-
-    
     
 class UiAutomatorThread(threading.Thread):
     """
@@ -149,8 +146,8 @@ class UiAutomatorThread(threading.Thread):
         """
         self.parent.onToolLogWarningCalled("Starting UIautomator on device...")
 
-        __adbexe__ = '%s\Plugins\adb\bin\adb.exe' % Settings.getDirExec()
-        __adbbin__ = '%s\Plugins\adb\bin\' % Settings.getDirExec()
+        __adbexe__ = r'"%s\Plugins\adb\bin\adb.exe"' % Settings.getDirExec()
+        __adbbin__ = r'"%s\Plugins\adb\bin\"' % Settings.getDirExec()
         
         self.trace("uploading jar files on devices")
         __cmd__ = '"%s" push "%s\\Adb\\bundle.jar" /data/local/tmp/' % (__adbexe__, __adbbin__ )

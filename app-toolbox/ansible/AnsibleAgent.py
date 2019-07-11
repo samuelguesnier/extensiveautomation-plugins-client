@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # -------------------------------------------------------------------
-# Copyright (c) 2018 Denis Barleben and Denys Bortovets
+# Copyright (c) 2018-2019 Denis Barleben and Denys Bortovets and Denis Machard
 # This file is part of the extensive automation project
 #
 # This library is free software; you can redistribute it and/or
@@ -20,14 +20,15 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301 USA
 # -------------------------------------------------------------------
-import json
 
 import Core.GenericTool as GenericTool
 
-# Ansible API
+import json
 import sys
+from collections import namedtuple
+
+# Ansible API
 if sys.platform in ['linux', 'linux2']:
-    from collections import namedtuple
     from ansible.parsing.dataloader import DataLoader
     from ansible.vars.manager import VariableManager
     from ansible.inventory.manager import InventoryManager
@@ -39,7 +40,6 @@ if sys.platform in ['linux', 'linux2']:
 
 __TOOL_TYPE__ = GenericTool.TOOL_AGENT
 __WITH_IDE__ = False
-__APP_PATH__ = ""
 __TYPE__ = """ansible"""
 __RESUME__ = """This agent provides Ansible client functionality Can be used on Linux"""
 

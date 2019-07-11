@@ -20,4 +20,5 @@
 
 @echo off
 
+:: for python2
 py -m pip install urllib2

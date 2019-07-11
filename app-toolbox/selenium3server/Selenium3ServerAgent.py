@@ -27,7 +27,7 @@ Selenium3 agent
 
 import Core.GenericTool as GenericTool
 import Libs.Settings as Settings
-import Libs.FifoQueue as FifoQueue
+# import Libs.FifoQueue as FifoQueue
 
 import sys
 import shlex
@@ -99,8 +99,8 @@ Events messages:
 
 Targetted operating system: Windows and Linux"""
 
-BIN_WIN = r'"%s\Plugins\selenium3server\" -jar ' % ( Settings.getDirExec() )
-BIN_LINUX = r"java \"%s/Plugins/selenium3server/selenium-server-standalone.jar\"" % ( Settings.getDirExec() )
+BIN_WIN = r'"%s\Plugins\selenium3server\bin\selenium-script.bat" -jar ' % ( Settings.getDirExec() )
+BIN_LINUX = "java \"%s/Plugins/selenium3server/selenium-server-standalone.jar\"" % ( Settings.getDirExec() )
 
 def initialize (controllerIp, controllerPort, toolName, toolDesc, 
                 defaultTool, supportProxy, proxyIp, proxyPort, sslSupport):
@@ -285,7 +285,7 @@ class SeleniumServer(GenericTool.Tool):
                                                                                 )
                                                                                 
                 __cmd__ +=  r' "%s\Plugins\selenium3server\bin\selenium-server-standalone.jar"' % (
-                                                                                Settings.getDirExec())
+                                                                                Settings.getDirExec()
                                                                                 )
                 #  -debug true
                 __cmd__ += r' -log "%s\selenium3_%s.log"  -debug' % ( "%s\%s" % ( Settings.getDirExec(), 

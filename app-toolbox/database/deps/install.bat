@@ -20,4 +20,4 @@
 
 @echo off
 
-py -m pip install pymysql psycopg2
+py -m pip install pymysql psycopg2 pymssql
