@@ -298,7 +298,7 @@ class Curl(GenericTool.Tool):
                     __options += '%{url_effective},%{remote_ip}\\n"'
                     
                     __options += ' --connect-timeout %s' % request["data"]["timeout-connect"]
-                    __options += ' --max-time %s ' % request["data"]["timeout-max"]
+                    __options += ' --max-time %s ' % int(request["data"]["timeout-max"])
                     
                     __options += ' -v %s -s ' % request["data"]["host"]
                     if "body" in request["data"]:
