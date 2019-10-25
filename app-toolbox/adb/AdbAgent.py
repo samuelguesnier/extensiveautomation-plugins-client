@@ -146,8 +146,8 @@ class UiAutomatorThread(threading.Thread):
         """
         self.parent.onToolLogWarningCalled("Starting UIautomator on device...")
 
-        __adbexe__ = r'"%s\Plugins\adb\bin\adb.exe"' % Settings.getDirExec()
-        __adbbin__ = r'"%s\Plugins\adb\bin\"' % Settings.getDirExec()
+        __adbexe__ = r'%s\\Plugins\\adb\\bin\\adb.exe' % Settings.getDirExec()
+        __adbbin__ = r'%s\\Plugins\\adb\\bin\\' % Settings.getDirExec()
         
         self.trace("uploading jar files on devices")
         __cmd__ = '"%s" push "%s\\Adb\\bundle.jar" /data/local/tmp/' % (__adbexe__, __adbbin__ )
@@ -246,9 +246,7 @@ class AdbScreenThread(threading.Thread):
         """
         On running thread
         """
-        __adbexe__ = '%s\%s\%s' % (Settings.getDirExec(), 
-                                   Settings.get('Paths', 'bin'), 
-                                   Settings.get('BinWin', 'adb-exe') )
+        __adbexe__ = r'%s\\Plugins\\adb\\bin\\adb.exe' % Settings.getDirExec()
         __ret__ = '%s\screncapture.png' % self.parent.getTemp()
         __cmd__ = '"%s" pull /data/local/tmp/screncapture.png "%s"' % ( __adbexe__, __ret__)
         __ret2__ = '%s\layout.xml' % self.parent.getTemp()  
@@ -347,7 +345,7 @@ class AdbServerThread(threading.Thread):
         """
         On run function
         """
-        __cmd__ = r'"%s"' % __APP_PATH__
+        __cmd__ = r'"%s\Plugins\adb\bin\run.bat"' % Settings.getDirExec()
         self.parent.trace(__cmd__)
         try:
             self.adbProcess = subprocess.Popen( __cmd__, shell=True, 
@@ -426,7 +424,7 @@ class Adb(GenericTool.Tool):
         self.adbUiThread = None
         
         self.devicePort = 9008
-        self.localPort = 8080
+        self.localPort = 40000
     
     def initAfterRegistration(self):
         """
@@ -636,9 +634,7 @@ class Adb(GenericTool.Tool):
         """
         Internal function to tap on position
         """    
-        __adbexe__ = '%s\%s\%s' % ( Settings.getDirExec(), 
-                                    Settings.get('Paths', 'bin'), 
-                                    Settings.get('BinWin', 'adb-exe') )
+        __adbexe__ = r'%s\\Plugins\\adb\\bin\\adb.exe' % Settings.getDirExec()
         __cmd__ = '"%s" shell input tap %s %s' % (__adbexe__, x,y)
         try:
             subprocess.call(__cmd__, shell=True, 
@@ -659,9 +655,7 @@ class Adb(GenericTool.Tool):
         """
         Internal function to retreive the screen from the device
         """
-        __adbexe__ = '%s\%s\%s' % ( Settings.getDirExec(), 
-                                    Settings.get('Paths', 'bin'), 
-                                    Settings.get('BinWin', 'adb-exe') )
+        __adbexe__ = r'%s\\Plugins\\adb\\bin\\adb.exe' % Settings.getDirExec()
         __ret__ = '%s\screncapture.png' % self.getTemp()
         __ret2__ = '%s\layout.xml' % self.getTemp()  
         __cmd__ = '"%s" pull /data/local/tmp/screncapture.png "%s"' % ( __adbexe__, __ret__)
@@ -711,9 +705,7 @@ class Adb(GenericTool.Tool):
         Internal function to run action
         """
         if method == 'adb':
-            __adbexe__ = '%s\%s\%s' % ( Settings.getDirExec(), 
-                                        Settings.get('Paths', 'bin'), 
-                                        Settings.get('BinWin', 'adb-exe') )
+            __adbexe__ = r'%s\\Plugins\\adb\\bin\\adb.exe' % Settings.getDirExec()
             __cmd__ = '"%s" %s' % (__adbexe__, params)
             stdout = ''
             returncode = 1
