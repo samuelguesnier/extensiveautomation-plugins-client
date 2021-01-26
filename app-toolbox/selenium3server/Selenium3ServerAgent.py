@@ -100,7 +100,7 @@ Events messages:
 Targetted operating system: Windows and Linux"""
 
 BIN_WIN = r'"%s\Plugins\selenium3server\bin\selenium-script.bat" -jar ' % ( Settings.getDirExec() )
-BIN_LINUX = "java \"%s/Plugins/selenium3server/selenium-server-standalone.jar\"" % ( Settings.getDirExec() )
+BIN_LINUX = "java -jar \"%s/plugins/selenium3server/bin/selenium-server-standalone.jar\"" % ( Settings.getDirExec() )
 
 def initialize (controllerIp, controllerPort, toolName, toolDesc, 
                 defaultTool, supportProxy, proxyIp, proxyPort, sslSupport):
